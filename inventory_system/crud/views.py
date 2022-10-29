@@ -9,6 +9,8 @@ import requests
 from .forms import InventoryForm
 from .models import Inventory
 from django.db import models
+
+API_URL = "http://localhost:8000/api/inventory" 
 # Create your views here.
 def index(request):
     return render(request, 'crud/index.html')
@@ -51,7 +53,7 @@ def details(request):
 def inventory_list(request):
     try:
         headers = {"Content-Type": "application/json; charset=utf-8; WWW-Authenticate"}
-        r = requests.get('http://localhost:8000/api/inventory',headers=headers, params=request.GET)
+        r = requests.get(API_URL,headers=headers, params=request.GET)
         print (f'Objects retrieved from API : {r.json()}')
         if r.status_code == 200:
             # table = InventoryTable(Inventory.objects.all())

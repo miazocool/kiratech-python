@@ -14,13 +14,12 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
         fields = ['url', 'name']
-class InventorySerializer(serializers.HyperlinkedModelSerializer):
-    # supplier = serializers.StringRelatedField(many=True)
+class InventorySerializer(serializers.ModelSerializer):
+    supplier = serializers.StringRelatedField()
     class Meta:
         model = Inventory
-        fields = ['id','name', 'availability', 'supplier']
-
-class SupplierSerializer(serializers.HyperlinkedModelSerializer):
+        fields = ('id','name', 'availability', 'supplier')
+class SupplierSerializer(serializers.ModelSerializer):
     class Meta:
         model = Supplier
         fields = ['id','name']

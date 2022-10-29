@@ -7,7 +7,7 @@ class Supplier(models.Model):
     date_created = models.DateTimeField(default=datetime.now())
 
     def __str__(self):
-        return f'Supplier id : %d; name : %s;' % (self.id, self.name)
+        return f'%d: %s' % (self.id, self.name)
 
 class Inventory(models.Model):
     name = models.CharField(max_length=200, verbose_name="Inventory name",)
@@ -16,7 +16,7 @@ class Inventory(models.Model):
     stock = models.IntegerField()
     availability = models.BooleanField()
     date_created = models.DateTimeField(default=datetime.now())
-    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
+    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE,  related_name='supplier')
     def __str__(self):
         return f'Inventory id : %d; name : %s; availability : %s;' % (self.id, self.name , self.availability)
 # Create your models here.

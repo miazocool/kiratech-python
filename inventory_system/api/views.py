@@ -4,7 +4,7 @@ from rest_framework import permissions
 from rest_framework.response import Response
 
 from .models import Inventory, Supplier
-from .serializers import InventorySerializer, UserSerializer, GroupSerializer
+from .serializers import InventorySerializer, SupplierSerializer, UserSerializer, GroupSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -41,7 +41,7 @@ class SupplierViewSet(viewsets.ModelViewSet):
     API endpoint that allows groups to be viewed or edited.
     """
     queryset = Supplier.objects.all()
-    serializer_class = InventorySerializer
+    serializer_class = SupplierSerializer
     # permission_classes = [permissions.IsAuthenticated]
     # def get(self, request, format=None):
     #     content = {
