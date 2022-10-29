@@ -1,0 +1,44 @@
+body {
+    background-color: lightblue;
+  }
+  
+  h1 {
+    color: rgb(87, 63, 63);
+    text-align: center;
+  }
+  h3{
+    text-align: center;
+  }
+  
+  p {
+    font-family: verdana;
+    font-size: 20px;
+  }
+  button{
+    padding: none;
+    border: none;
+    background: none;
+  }
+  .container {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    /* border: solid; */
+    align-items: center;
+  }
+  
+  .action{
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* border: solid; */
+  }
+  
+  .button {
+    /* border: solid; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
