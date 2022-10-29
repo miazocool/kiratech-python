@@ -14,16 +14,16 @@ def index(request):
     return render(request, 'crud/index.html')
 
 class InventoryTable(tables.Table):
-    supplier = Column(accessor = 'supplier.name')
-    availability = Column(accessor = 'availability')
+    # supplier = Column(accessor = 'supplier.name')
+    # availability = Column(accessor = 'availability')
     view_more = TemplateColumn(verbose_name=('View More'),
                             template_name='crud/view-more.html',
                             orderable=False)  # orderable not sortable
     class Meta:
         model = Inventory
         template_name = "django_tables2/bootstrap.html"
-        fields = ["id", "name"]
-        sequence = ['id', "name"]
+        fields = ["id", "name", 'availability','supplier']
+        sequence = ['id', "name", 'availability','supplier']
 
 # class InventoryListView(SingleTableView):
 #     model = Inventory
@@ -55,7 +55,7 @@ def inventory_list(request):
         print (f'Objects retrieved from API : {r.json()}')
         if r.status_code == 200:
             # table = InventoryTable(Inventory.objects.all())
-            table = InventoryTable(r.json())
+            table = InventoryTable(r.json()["results"])
             return render(request, "crud/listing.html", {
                 "table": table
             })

@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 
-from .models import Inventory
+from .models import Inventory, Supplier
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -15,6 +15,12 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         model = Group
         fields = ['url', 'name']
 class InventorySerializer(serializers.HyperlinkedModelSerializer):
+    # supplier = serializers.StringRelatedField(many=True)
     class Meta:
         model = Inventory
-        fields = ['name']
+        fields = ['id','name', 'availability', 'supplier']
+
+class SupplierSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Supplier
+        fields = ['id','name']
