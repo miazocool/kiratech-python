@@ -19,7 +19,7 @@ def index(request):
 
 class InventoryTable(tables.Table):
     supplier = Column(accessor = 'supplier.name')
-    view_more = TemplateColumn("<a href=/crud/inventory/detail/{{ record.id }}>Update</a>",
+    view_more = TemplateColumn("<a href=/crud/inventory/{{ record.id }}>Update</a>",
                         verbose_name=('View More'),
                         orderable=False, ) # orderable not sortable
     class Meta:
@@ -28,8 +28,15 @@ class InventoryTable(tables.Table):
         fields = ["id", "name", 'availability','supplier']
         sequence = ['id', "name", 'availability','supplier']
 
-def details(request, value):
-    data = {'name' : 'Hello Inventory'}
+def details(request, id):
+    inv_object = Inventory.objects.filter(id=id)
+    # print(f'inv_object is : inv_object[0]['name']')
+    data = {'name' : inv_object[0].name,
+            'description' : inv_object[0].description,
+            'note' : inv_object[0].note,
+            'stock' : inv_object[0].stock,
+            'availability' : inv_object[0].availability
+            }
     form = InventoryForm(data)
     return render(request, "crud/details.html", {"form": form})
 

@@ -7,3 +7,6 @@ https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&n
 python manage.py makemigrations crud
 python manage.py sqlmigrate crud 0001
 python manage.py migrate
+
+### To see which test run
+python manage.py test -v 2

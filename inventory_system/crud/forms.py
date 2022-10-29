@@ -5,6 +5,12 @@ from .models import Inventory, Supplier
 class InventoryForm(forms.ModelForm):
     name = forms.CharField(required=True, widget=forms.TextInput(
         attrs={'placeholder': 'Search name', 'class': 'form-control'}))
+    descrition = forms.CharField(required=True, widget=forms.TextInput(
+        attrs={'placeholder': 'Search descrition', 'class': 'form-control'}))
+    note = forms.CharField(required=True, widget=forms.TextInput(
+        attrs={'placeholder': 'Search note', 'class': 'form-control'}))
+    availability = forms.CharField(required=True, widget=forms.TextInput(
+        attrs={'placeholder': 'Search availability', 'class': 'form-control'}))
 
     class Meta:
         model=Inventory
