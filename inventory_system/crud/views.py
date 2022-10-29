@@ -6,29 +6,34 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django_tables2 import tables, SingleTableView, TemplateColumn, Column
 
 from .forms import InventoryForm
-from .models import Inventory, LinkModel, Supplier
+from .models import Inventory
 from django.db import models
 # Create your views here.
 def index(request):
     return render(request, 'crud/index.html')
 
-class LinkModelTable(tables.Table):
-    supplier_name = Column(accessor = 'supplier.name')
-    inventory_name = Column(accessor = 'inventory.name')
-    availability = Column(accessor = 'inventory.availability')
+class InventoryTable(tables.Table):
+    supplier = Column(accessor = 'supplier.name')
+    availability = Column(accessor = 'availability')
     view_more = TemplateColumn(verbose_name=('View More'),
                             template_name='crud/view-more.html',
                             orderable=False)  # orderable not sortable
     class Meta:
-        model = LinkModel
+        model = Inventory
         template_name = "django_tables2/bootstrap.html"
-        fields = ["id"]
-        sequence = ['id']
+        fields = ["id", "name"]
+        sequence = ['id', "name"]
 
-class LinkListView(SingleTableView):
-    model = LinkModel
-    table_class = LinkModelTable
-    template_name = 'crud/listing.html'
+# class InventoryListView(SingleTableView):
+#     model = Inventory
+#     data = [
+#         {"name" :"Inv5", "supplier" : "12"},
+#         {"name" : "Inv6", "supplier" : "12"},
+#         {"name" : "Inv7", "supplier" : "13"}
+#     ]
+#     table_class = InventoryTable
+#     table = InventoryTable(data)
+#     template_name = 'crud/listing.html'
 
 def details(request):
     # form = InventoryForm()
@@ -41,3 +46,14 @@ def details(request):
     #     user.save()
     #     return render(request, "crud/listing.html")
     return render(request, "crud/details.html", {"form": form})
+
+def inventory_list(request):
+    # data = [
+    #     {"name" :"Inv5", "supplier" : 12},
+    #     {"name" : "Inv6", "supplier" : 12},
+    #     {"name" : "Inv7", "supplier" : 13}
+    # ]
+    table = InventoryTable(Inventory.objects.all())
+    return render(request, "crud/listing.html", {
+        "table": table
+    })

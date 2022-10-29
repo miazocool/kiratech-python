@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'crud.apps.CrudConfig',
+    'api.apps.ApiConfig',
     'django_tables2',
     'django.contrib.admin',
     'django.contrib.auth',

@@ -1,5 +1,5 @@
 from django import forms
-from .models import LinkModel, Inventory, Supplier
+from .models import Inventory, Supplier
 
 
 class InventoryForm(forms.ModelForm):
