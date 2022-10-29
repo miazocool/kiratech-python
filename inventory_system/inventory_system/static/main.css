@@ -25,6 +25,7 @@ body {
     flex-direction: column;
     /* border: solid; */
     align-items: center;
+    /* justify-content: center; */
   }
   
   .action{

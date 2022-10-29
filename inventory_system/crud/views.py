@@ -19,8 +19,8 @@ def index(request):
 
 class InventoryTable(tables.Table):
     supplier = Column(accessor = 'supplier.name')
-    view_more = TemplateColumn("<a href=/crud/inventory/{{ record.id }}>Update</a>",
-                        verbose_name=('View More'),
+    view_more = TemplateColumn("<a href=/crud/inventory/{{ record.id }}>Details</a>",
+                        verbose_name=('Action'),
                         orderable=False, ) # orderable not sortable
     class Meta:
         model = Inventory

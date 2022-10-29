@@ -4,13 +4,15 @@ from .models import Inventory, Supplier
 
 class InventoryForm(forms.ModelForm):
     name = forms.CharField(required=True, widget=forms.TextInput(
-        attrs={'placeholder': 'Search name', 'class': 'form-control'}))
-    descrition = forms.CharField(required=True, widget=forms.TextInput(
-        attrs={'placeholder': 'Search descrition', 'class': 'form-control'}))
+        attrs={'placeholder': 'Name','class': 'form-control'}))
+    description = forms.CharField(required=True, widget=forms.TextInput(
+        attrs={'placeholder': 'Descrition', 'class': 'form-control'}))
     note = forms.CharField(required=True, widget=forms.TextInput(
-        attrs={'placeholder': 'Search note', 'class': 'form-control'}))
+        attrs={'placeholder': 'Note', 'class': 'form-control'}))
+    stock = forms.CharField(required=True, widget=forms.TextInput(
+        attrs={'placeholder': 'Stock', 'class': 'form-control'}))
     availability = forms.CharField(required=True, widget=forms.TextInput(
-        attrs={'placeholder': 'Search availability', 'class': 'form-control'}))
+        attrs={'placeholder': 'Availability', 'class': 'form-control'}))
 
     class Meta:
         model=Inventory
