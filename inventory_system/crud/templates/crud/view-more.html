@@ -15,11 +15,11 @@
     <link rel="stylesheet" href="{% static 'main.css' %}" />
   </head>
   <body>
-    <a href="">
-      <button mat-icon-button>
-        <span class="material-icons"> update </span>
-        Update Row
-      </button>
-    </a>
+    <div class="action">
+      <a href="{% url 'details' %}" class="button">
+        <span class="material-icons">info</span>
+        View
+      </a>
+    </div>
   </body>
 </html>

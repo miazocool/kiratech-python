@@ -30,3 +30,9 @@ class LinkModel(models.Model):
     inventory = models.ForeignKey(Inventory, on_delete=models.CASCADE)
     def __str__(self):
         return f'The link id is : %d; Supplier id : %d; Inventory id : %d;' % (self.id, self.inventory, self.supplier)
+
+from django.contrib import admin
+
+class AuthorAdmin(admin.ModelAdmin):
+    pass
+# admin.site.register(Author, AuthorAdmin)
