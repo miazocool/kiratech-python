@@ -18,7 +18,7 @@ class InventorySerializer(serializers.ModelSerializer):
     supplier = serializers.StringRelatedField()
     class Meta:
         model = Inventory
-        fields = ('id','name', 'availability', 'supplier')
+        fields = ('id','name', 'description', 'note', 'stock','availability', 'supplier', )
 class SupplierSerializer(serializers.ModelSerializer):
     class Meta:
         model = Supplier
