@@ -20,33 +20,23 @@
     <div class="container">
       <h1>Welcome to The Inventory System</h1>
       <h2>Where you can see details of your inventory and supplier</h2>
-        <h3>Developed by Muhammad Zaim</h3>
+      <h3>Developed by Muhammad Zaim</h3>
       <br />
+      <h3>See all list or Search inventory name</h3>
+      <input type="text" id="inv-search" />
       <div class="action">
         <a href="{% url 'list' %}" class="button">
           <span class="material-icons"> list </span>
           View List
         </a>
+        <a
+          onclick="this.href='inventory/?name='+document.getElementById('inv-search').value"
+          class="button"
+        >
+          <span class="material-icons"> list </span>
+          Search
+        </a>
       </div>
     </div>
   </body>
 </html>
-
-<!-- {% if users %}
-    <ul>
-      {% for user in users %}
-      <li><a href="/polls/{{ user.id }}/">{{ user.user_text }}</a></li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <p>No polls are available.</p>
-{% endif %} -->
-<!-- {% if users %}
-  <ul>
-    {% for user in users %}
-    {{user.id}}, {{user.name}}, {{user.favorite_quote}} <br>
-    {% endfor %}
-  </ul>
-  {% else %}
-  <p>No polls are available.</p>
-  {% endif %} -->

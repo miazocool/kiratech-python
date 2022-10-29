@@ -6,6 +6,8 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path("inventory/", views.inventory_list, name='list'),
+    path(r'^inventory/(?P<name>[0-9]{4})/$', views.inventory_list, name='list-query'),
+    # path(r'inventory/?', views.inventory_list, name='list-query'),
     # path("inventory/", views.InventoryListView.as_view(), name='list'),
     path("inventory/<int:id>", views.details, name='details'),
 ]
