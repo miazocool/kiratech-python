@@ -41,10 +41,10 @@ def details(request, id):
     return render(request, "crud/details.html", {"form": form})
 
 def inventory_list(request):
-    querying_id = request.GET.get('id', None)
-    if querying_id:
-        print("query id is " + querying_id)
-        inv = Inventory.objects.filter(id=querying_id)
+    querying_name = request.GET.get('name', None)
+    if querying_name:
+        print("query id is " + querying_name)
+        inv = Inventory.objects.filter(name=querying_name)
         table = InventoryTable(inv)
         return render(request, "crud/listing.html", {
             "table": table
