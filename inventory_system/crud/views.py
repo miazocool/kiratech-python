@@ -1,6 +1,7 @@
 from functools import reduce
 from django.template import loader
 from django.http import HttpResponse
+from django.urls import reverse
 from django.views.generic import ListView
 from django.shortcuts import redirect, render, get_object_or_404
 from django_tables2 import tables, SingleTableView, TemplateColumn, Column
@@ -11,6 +12,7 @@ from .models import Inventory
 from django.db import models
 
 API_URL = "http://localhost:8000/api/inventory" 
+ 
 # Create your views here.
 def index(request):
     return render(request, 'crud/index.html')
@@ -18,14 +20,26 @@ def index(request):
 class InventoryTable(tables.Table):
     # supplier = Column(accessor = 'supplier.name')
     # availability = Column(accessor = 'availability')
-    view_more = TemplateColumn(verbose_name=('View More'),
-                            template_name='crud/view-more.html',
-                            orderable=False)  # orderable not sortable
+    # clickable = {'td': {'data-href': lambda record: record.id}}
+    # attrs=clickable
+    # view_more = TemplateColumn(verbose_name=('View More'),
+    #                         template_name='crud/view-more.html',
+    #                         orderable=False, ) # orderable not sortable
+    view_more = TemplateColumn("<a href=/crud/inventory/detail/{{ record.id }}>Update</a>",
+                        verbose_name=('View More'),
+                        orderable=False, ) # orderable not sortable
+    foo = TemplateColumn("{{ record.url }}")
+    print(f'the id is {foo.value}')
     class Meta:
         model = Inventory
         template_name = "django_tables2/bootstrap.html"
         fields = ["id", "name", 'availability','supplier']
         sequence = ['id', "name", 'availability','supplier']
+        exclude = ("foo",)
+        # row_attrs = {
+        #     "onClick": lambda record: "document.location.href='/crud/inventory/detail/{0}';".format(record.name)
+        #     # "onClick": lambda record: print(f"the record is : {record}")
+        # }
 
 # class InventoryListView(SingleTableView):
 #     model = Inventory
@@ -38,10 +52,11 @@ class InventoryTable(tables.Table):
 #     table = InventoryTable(data)
 #     template_name = 'crud/listing.html'
 
-def details(request):
+def details(request, value):
     # form = InventoryForm()
     data = {'name' : 'Hello Inventory'}
     form = InventoryForm(data)
+    print("value is:" + value)
     # if request.method == "GET":
     #     print(request)
     #     user = Inventory(name=request.POST.get('name'),

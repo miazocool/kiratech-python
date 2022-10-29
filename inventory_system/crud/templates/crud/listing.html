@@ -16,6 +16,13 @@
     />
     <link rel="stylesheet" href="{% static 'main.css' %}" />
     <title>Listing</title>
+    <script>
+      $(document).ready(function($) {
+        $("td").click(function() {
+          window.location = $(this).data("href");
+        });
+      });
+    </script>
   </head>
   <body>
     <div class="container">
