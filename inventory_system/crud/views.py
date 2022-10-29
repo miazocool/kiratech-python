@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.views.generic import ListView
 from django.shortcuts import redirect, render, get_object_or_404
 from django_tables2 import tables, SingleTableView, TemplateColumn, Column
+import requests
 
 from .forms import InventoryForm
 from .models import Inventory
@@ -48,12 +49,15 @@ def details(request):
     return render(request, "crud/details.html", {"form": form})
 
 def inventory_list(request):
-    # data = [
-    #     {"name" :"Inv5", "supplier" : 12},
-    #     {"name" : "Inv6", "supplier" : 12},
-    #     {"name" : "Inv7", "supplier" : 13}
-    # ]
-    table = InventoryTable(Inventory.objects.all())
-    return render(request, "crud/listing.html", {
-        "table": table
-    })
+    try:
+        headers = {"Content-Type": "application/json; charset=utf-8; WWW-Authenticate"}
+        r = requests.get('http://localhost:8000/api/inventory',headers=headers, params=request.GET)
+        print (f'Objects retrieved from API : {r.json()}')
+        if r.status_code == 200:
+            # table = InventoryTable(Inventory.objects.all())
+            table = InventoryTable(r.json())
+            return render(request, "crud/listing.html", {
+                "table": table
+            })
+    except requests.exceptions.RequestException as e: 
+        raise HttpResponse(f'Could not save data {e}')

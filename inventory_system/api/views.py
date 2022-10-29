@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
+from rest_framework.response import Response
 
 from .models import Inventory
 from .serializers import InventorySerializer, UserSerializer, GroupSerializer
@@ -28,4 +29,10 @@ class InventoryViewSet(viewsets.ModelViewSet):
     """
     queryset = Inventory.objects.all()
     serializer_class = InventorySerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
+    # def get(self, request, format=None):
+    #     content = {
+    #         'user': str(request.user),  # `django.contrib.auth.User` instance.
+    #         'auth': str(request.auth),  # None
+    #     }
+    #     return Response(content)
