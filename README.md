@@ -1,12 +1,33 @@
 # kiratech-python
 A test from KiraTech
 
-# Schema
-https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1&title=kiratech-test.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1BKbgJ69AFjAQQApoqPT4IPEoXr2upHAa%26export%3Ddownload
+# To run
+```
+#create virtual environment
+python -m venv venv
 
-python manage.py makemigrations crud
-python manage.py sqlmigrate crud 0001
-python manage.py migrate
+# activate virtual environment
+source venv/Scripts/Activate 
 
-### To see which test run
-python manage.py test -v 2
+# install python package from requirements.txt
+pip install -r requirements.txt 
+
+# navigate into project directory
+cd /kiratech-python/inventory_system
+
+# run the app
+python manage.py runserver 
+
+# view app at localhost:8000/
+```
+# Crud operations on Inventory, Supplier 
+## on /localhost:8000/admin
+### The superuser credentials are:
+- username : admin
+- password : 123123
+
+# To run unit test
+```
+cd /kiratech-python/inventory_system
+python manage.py test
+```
