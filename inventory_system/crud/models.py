@@ -8,9 +8,8 @@ from datetime import datetime
 from django.urls import reverse
 
 # Create your models here.
-# Create your models here.
-def get_absolute_url(self):
-    return reverse('product:detail', kwargs={'slug': self.slug})
+# def get_absolute_url(self):
+#     return reverse('product:detail', kwargs={'slug': self.slug})
    
 class Supplier(models.Model):
     name = models.CharField(max_length=200, verbose_name="Supplier name",)

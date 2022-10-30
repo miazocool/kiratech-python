@@ -43,7 +43,6 @@ def details(request, id):
 def inventory_list(request):
     querying_name = request.GET.get('name', None)
     if querying_name:
-        print("query id is " + querying_name)
         inv = Inventory.objects.filter(name=querying_name)
         table = InventoryTable(inv)
         return render(request, "crud/listing.html", {
@@ -81,13 +80,3 @@ def inventory_list(request):
         })
     except requests.exceptions.RequestException as e: 
         raise HttpResponse(f'Could not save data {e}')
-
-# def list_query(request):
-#     print("Hello World")
-#     inv_name = request.GET.get('name')
-#     print(inv_name)
-#     inv = Inventory.objects.filter(name=inv_name)
-#     table = InventoryTable(inv)
-#     return render(request, "crud/listing.html", {
-#         "table": table
-#     })
